@@ -10,7 +10,11 @@ fun scoreFor(allRolls: String): Int =
         }
 
 private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
-    return if (roll == SPARE) score(allRolls.next(idx)) else 0
+    return when (roll) {
+        SPARE -> score(allRolls.next(idx))
+        STRIKE -> score(allRolls.next(idx)) + score(allRolls.next(idx + 1))
+        else -> 0
+    }
 }
 
 private fun String.next(idx: Int): Char {
