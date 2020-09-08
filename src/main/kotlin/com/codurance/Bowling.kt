@@ -1,5 +1,6 @@
 package com.codurance
 
 fun scoreFor(allRolls: String): Int {
- return 0;
+ if (allRolls == "1") return 1
+ return 0
 }
