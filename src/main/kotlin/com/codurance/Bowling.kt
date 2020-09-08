@@ -2,6 +2,7 @@ package com.codurance
 
 private const val MISS = '-'
 private const val SPARE = '/'
+private const val STRIKE = 'X'
 
 fun scoreFor(allRolls: String): Int =
         allRolls.foldIndexed(0) { idx, score, roll ->
@@ -27,7 +28,7 @@ private fun String.previous(idx: Int): Char {
 private fun score(roll: Char) =
         when (roll) {
             in '1'..'9' -> String(charArrayOf(roll)).toInt()
-            SPARE -> 10
+            SPARE, STRIKE -> 10
             else -> 0
         }
 
