@@ -3,6 +3,7 @@ package com.codurance
 private const val MISS = '-'
 private const val SPARE = '/'
 private const val STRIKE = 'X'
+private const val NORMAL_FRAMES: Int = 18
 
 fun scoreFor(allRolls: String): Int =
         allRolls.foldIndexed(0) { idx, score, roll ->
@@ -10,17 +11,22 @@ fun scoreFor(allRolls: String): Int =
         }
 
 private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
+    if (isLastFrame(allRolls, idx)) return 0
+
     val next = score(allRolls.next(idx))
     return when (roll) {
-        SPARE -> {
-            next
-        }
+        SPARE -> next
         STRIKE -> {
-            val nextButOne = score(allRolls.next(idx + 1))
-            next + nextButOne - spareDiff(allRolls, allRolls.next(idx + 1), idx + 2)
+            val nextButOne = allRolls.next(idx + 1)
+            next + score(nextButOne) - spareDiff(allRolls, nextButOne, idx + 2)
         }
         else -> 0
     }
+}
+
+private fun isLastFrame(allRolls: String, idx: Int): Boolean {
+    return NORMAL_FRAMES <= allRolls.substring(0, idx)
+            .sumBy { roll -> if (roll == STRIKE) 2 else 1 }
 }
 
 private fun String.next(idx: Int): Char {

@@ -35,4 +35,9 @@ class BowlingShould {
     internal fun `calculate score for spares and strikes`() {
         assertThat(scoreFor("1/X1/2"), `is`(54))
     }
+
+    @Test
+    internal fun `calculate score for last frame`() {
+        assertThat(scoreFor("1/35XXX458/X3/XX6"), `is`(189))
+    }
 }
