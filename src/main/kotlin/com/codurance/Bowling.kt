@@ -1,12 +1,16 @@
 package com.codurance
 
 fun scoreFor(allRolls: String): Int {
- var score = 0
- for (roll in allRolls) {
-  score += score(roll)
+ return allRolls.fold(0) { score, roll ->
+  score + score(roll)
  }
 
- return score
+// var score = 0
+// for (roll in allRolls) {
+//  score += score(roll)
+// }
+//
+// return score
 }
 
 private fun score(roll: Char) =
