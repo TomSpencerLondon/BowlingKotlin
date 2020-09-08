@@ -24,7 +24,7 @@ private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
     }
 }
 
-private fun isLastFrame(allRolls: String, idx: Int): Boolean =
+private fun isLastFrame(allRolls: String, idx: Int) =
         NORMAL_FRAMES <= allRolls.substring(0, idx)
             .sumBy { roll -> if (roll == STRIKE) 2 else 1 }
 
