@@ -9,6 +9,5 @@ fun scoreFor(allRolls: String): Int {
  return score
 }
 
-private fun score(roll: Char): Int {
- return String(charArrayOf(roll)).toInt()
-}
+private fun score(roll: Char): Int = String(charArrayOf(roll)).toInt()
+
