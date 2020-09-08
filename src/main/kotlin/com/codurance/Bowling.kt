@@ -24,22 +24,19 @@ private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
     }
 }
 
-private fun isLastFrame(allRolls: String, idx: Int): Boolean {
-    return NORMAL_FRAMES <= allRolls.substring(0, idx)
+private fun isLastFrame(allRolls: String, idx: Int): Boolean =
+        NORMAL_FRAMES <= allRolls.substring(0, idx)
             .sumBy { roll -> if (roll == STRIKE) 2 else 1 }
-}
 
-private fun String.next(idx: Int): Char {
-    return if (idx < length - 1) this[idx + 1] else MISS
-}
 
-fun spareDiff(allRolls: String, roll: Char, idx: Int): Int {
-    return if (roll == SPARE) score(allRolls.previous(idx)) else 0
-}
+private fun String.next(idx: Int) =
+        if (idx < length - 1) this[idx + 1] else MISS
 
-private fun String.previous(idx: Int): Char {
-    return if (idx > 0) this[idx - 1] else MISS
-}
+fun spareDiff(allRolls: String, roll: Char, idx: Int) =
+        if (roll == SPARE) score(allRolls.previous(idx)) else 0
+
+private fun String.previous(idx: Int) =
+        if (idx > 0) this[idx - 1] else MISS
 
 private fun score(roll: Char) =
         when (roll) {
