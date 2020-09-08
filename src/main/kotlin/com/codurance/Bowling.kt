@@ -10,9 +10,15 @@ fun scoreFor(allRolls: String): Int =
         }
 
 private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
+    val next = score(allRolls.next(idx))
     return when (roll) {
-        SPARE -> score(allRolls.next(idx))
-        STRIKE -> score(allRolls.next(idx)) + score(allRolls.next(idx + 1))
+        SPARE -> {
+            next
+        }
+        STRIKE -> {
+            val nextButOne = score(allRolls.next(idx + 1))
+            next + nextButOne - spareDiff(allRolls, allRolls.next(idx + 1), idx + 2)
+        }
         else -> 0
     }
 }
