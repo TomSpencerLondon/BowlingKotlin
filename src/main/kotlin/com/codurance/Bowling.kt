@@ -5,8 +5,16 @@ private const val SPARE = '/'
 
 fun scoreFor(allRolls: String): Int =
         allRolls.foldIndexed(0) { idx, score, roll ->
-            score + score(roll) - spareDiff(allRolls, roll, idx)
+            score + score(roll) - spareDiff(allRolls, roll, idx) + bonus(allRolls, roll, idx)
         }
+
+private fun bonus(allRolls: String, roll: Char, idx: Int): Int {
+    return if (roll == SPARE) score(allRolls.next(idx)) else 0
+}
+
+private fun String.next(idx: Int): Char {
+    return if (idx < length - 1) this[idx + 1] else MISS
+}
 
 fun spareDiff(allRolls: String, roll: Char, idx: Int): Int {
     return if (roll == SPARE) score(allRolls.previous(idx)) else 0
