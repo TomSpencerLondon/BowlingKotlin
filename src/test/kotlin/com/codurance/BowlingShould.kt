@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class BowlingShould {
     @Test
-    fun calculate_score_for_pins() {
+    fun `calculate score for pins`() {
         assertThat(scoreFor(""), `is`(0))
         assertThat(scoreFor("1"), `is`(1))
         assertThat(scoreFor("2"), `is`(2))
