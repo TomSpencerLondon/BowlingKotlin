@@ -18,4 +18,9 @@ class BowlingShould {
         assertThat(scoreFor("-"), `is`(0))
         assertThat(scoreFor("1-"), `is`(1))
     }
+
+    @Test
+    internal fun `calculate score for spares`() {
+        assertThat(scoreFor("3/-"), `is`(10))
+    }
 }
