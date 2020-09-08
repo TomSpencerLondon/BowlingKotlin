@@ -1,6 +1,14 @@
 package com.codurance
 
 fun scoreFor(allRolls: String): Int {
- if (allRolls == "1") return 1
- return 0
+ var score = 0
+ for (roll in allRolls) {
+  score += score(roll)
+ }
+
+ return score
+}
+
+private fun score(roll: Char): Int {
+ return String(charArrayOf(roll)).toInt()
 }
